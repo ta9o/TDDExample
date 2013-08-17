@@ -9,24 +9,24 @@ import static org.junit.Assert.assertThat;
 public class MoneyTest {
     @Test
     public void testMultiplication() {
-        Dollar five = new Dollar(5);
-        assertThat(new Dollar(10), is(five.times(2)));
-        assertThat(new Dollar(15), is(five.times(3)));
+        Money five = Money.dollar(5);
+        assertThat(Money.dollar(10), is(five.times(2)));
+        assertThat(Money.dollar(15), is(five.times(3)));
     }
 
     @Test
     public void testEquality() {
-        assertThat(new Dollar(5).equals(new Dollar(5)), is(true));
-        assertThat(new Dollar(5).equals(new Dollar(6)), is(false));
-        assertThat(new Franc(5).equals(new Franc(5)), is(true));
-        assertThat(new Franc(5).equals(new Franc(6)), is(false));
-        assertThat(new Franc(5).equals(new Dollar(5)), is(false));
+        assertThat(Money.dollar(5).equals(Money.dollar(5)), is(true));
+        assertThat(Money.dollar(5).equals(Money.dollar(6)), is(false));
+        assertThat(Money.franc(5).equals(Money.franc(5)), is(true));
+        assertThat(Money.franc(5).equals(Money.franc(6)), is(false));
+        assertThat(Money.franc(5).equals(Money.dollar(5)), is(false));
     }
 
     @Test
     public void testFrancMultiplication() {
-        Franc five = new Franc(5);
-        assertThat(new Franc(10), is(five.times(2)));
-        assertThat(new Franc(15), is(five.times(3)));
+        Money five = Money.franc(5);
+        assertThat(Money.franc(10), is(five.times(2)));
+        assertThat(Money.franc(15), is(five.times(3)));
     }
 }
