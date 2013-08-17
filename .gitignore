@@ -4,3 +4,30 @@
 *.jar
 *.war
 *.ear
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# # Intellij
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# # Mac
+.DS_Store
+
+# # Maven
+log/
+target/
+
+# Exclude temp nibs and swap files
+*~.nib
+*.swp
+
+# build files
+BUILD_DATE
+build/
+.gradle
