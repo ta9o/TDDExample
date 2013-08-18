@@ -43,4 +43,27 @@ public class MoneyTest {
         assertThat(reduced, is(Money.dollar(10)));
     }
 
+    @Test
+    public void testReturnsSum() {
+        Money five = Money.dollar(5);
+        Expression result = five.plus(five);
+        Sum sum = (Sum) result;
+        assertThat(sum.augend, is(five));
+        assertThat(sum.addend, is(five));
+    }
+
+    @Test
+    public void testReduceSum() {
+        Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
+        Bank bank = new Bank();
+        Money result = bank.reduce(sum, "USD");
+        assertThat(result, is(Money.dollar(7)));
+    }
+
+    @Test
+    public void testReduceMoney() {
+        Bank bank = new Bank();
+        Money result = bank.reduce(Money.dollar(1), "USD");
+        assertThat(result, is(Money.dollar(1)));
+    }
 }
