@@ -29,4 +29,10 @@ public class MoneyTest {
         assertThat(Money.franc(10), is(five.times(2)));
         assertThat(Money.franc(15), is(five.times(3)));
     }
+
+    @Test
+    public void testCurrency() {
+        assertThat(Money.dollar(1).currency(), is("USD"));
+        assertThat(Money.franc(1).currency(), is("CHF"));
+    }
 }
