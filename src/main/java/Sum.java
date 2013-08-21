@@ -1,21 +1,22 @@
 /**
- * Created with IntelliJ IDEA.
  * User: imbe
- * Date: 8/18/13
- * Time: 3:46 PM
- * To change this template use File | Settings | File Templates.
  */
 public class Sum implements Expression {
-    Money augend;
-    Money addend;
+    Expression augend;
+    Expression addend;
 
-    public Sum(Money augend, Money addend) {
+    Sum(Expression augend, Expression addend) {
         this.augend = augend;
         this.addend = addend;
     }
 
     public Money reduce(Bank bank, String to) {
-        int amount = augend.amount + addend.amount;
+        int amount = augend.reduce(bank, to).amount
+                + addend.reduce(bank, to).amount;
         return new Money(amount, to);
+    }
+
+    public Expression plus(Expression addend) {
+        return null;
     }
 }

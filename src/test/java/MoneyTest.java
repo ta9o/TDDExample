@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -44,8 +45,8 @@ public class MoneyTest {
     }
 
     @Test
-    public void testReturnsSum() {
-        Money five = Money.dollar(5);
+    public void testPlusReturnsSum() {
+        Expression five = Money.dollar(5); // assertThat だと型を Expression に代えないとダメだった
         Expression result = five.plus(five);
         Sum sum = (Sum) result;
         assertThat(sum.augend, is(five));
@@ -83,5 +84,15 @@ public class MoneyTest {
     @Test
     public void testIdentityRate() {
         assertThat(new Bank().rate("USD", "USD"), is(1));
+    }
+
+    @Test
+    public void testMixedAddition() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+        assertThat(result, is(Money.dollar(10)));
     }
 }
